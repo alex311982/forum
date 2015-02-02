@@ -83,6 +83,7 @@ class EventDispatcherTest extends PHPUnit_Framework_TestCase
 
     public function testNotifyValidObserver()
     {
+        $this->db->query($this->queryTruncate);
         $this->db->query($this->queryInsert);
         $this->object = new Object();
         $this->object->comment = $this->testComment;
@@ -92,6 +93,7 @@ class EventDispatcherTest extends PHPUnit_Framework_TestCase
 
     public function testNotifyNotObserver()
     {
+        $this->db->query($this->queryTruncate);
         $this->object = new Object();
         $this->object->comment = $this->testComment;;
         $this->dispatcher->dispatch($this->testEventName, $this->object);
